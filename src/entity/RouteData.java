@@ -39,6 +39,16 @@ public class RouteData {
         routes.removeIf(route -> route.getId().equals(routeId));
     }
 
+    public void updateRoute(Route route) {
+        for (int i = 0; i < routes.size(); i++) {
+            if (routes.get(i).getId().equals(route.getId())) {
+                routes.set(i, route);
+                break;
+            }
+        }
+    }
+
+
     public boolean isRouteExists(List<String> cities) {
         for (Route route : routes) {
             if (route.getLocationPoints().equals(cities)) {

@@ -50,10 +50,16 @@ public class NavigatorImpl implements Navigator {
 
     @Override
     public void chooseRoute(String routeId) {
-        routeHashSet.choose(routeId);
+        Route route = routeHashSet.get(routeId);
+        if (route != null) {
+            route.setPopularity(route.getPopularity() + 1);
+            routeHashSet.choose(routeId);
+            routeData.updateRoute(route);
+        }
     }
 
-    @Override
+
+        @Override
     public Iterable<Route> searchRoutes(String startPoint, String endPoint) {
         return routeHashSet.searchRoutes(startPoint, endPoint);
     }

@@ -28,19 +28,18 @@ public class SortedRoutes {
         return sortedRoutes.stream()
                 .sorted((route1, route2) -> {
                     int favoriteComparison = Boolean.compare(route2.isFavorite(), route1.isFavorite());
-
                     if (favoriteComparison != 0) {
                         return favoriteComparison;
                     }
-                    if (route1.isFavorite() && route2.isFavorite()) {
-                        return Double.compare(route1.getDistance(), route2.getDistance());
-                    }
                     int popularityComparison = Integer.compare(route2.getPopularity(), route1.getPopularity());
-
                     if (popularityComparison != 0) {
                         return popularityComparison;
                     }
-                    return Double.compare(route1.getDistance(), route2.getDistance());
+                    int distanceComparison = Double.compare(route1.getDistance(), route2.getDistance());
+                    if (distanceComparison != 0) {
+                        return distanceComparison;
+                    }
+                    return Integer.compare(route1.getLocationPoints().size(), route2.getLocationPoints().size());
                 })
                 .collect(Collectors.toList());
     }

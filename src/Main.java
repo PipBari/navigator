@@ -37,6 +37,7 @@ public class Main {
                     String routeId = scanner.next();
                     Route route = navigator.getRoute(routeId);
                     if (route != null) {
+                        navigator.chooseRoute(routeId);
                         printRoute(route);
                     } else {
                         System.out.println("Маршрут не найден.");
@@ -80,7 +81,6 @@ public class Main {
                             .filter(Route::isFavorite)
                             .sorted(Comparator.comparingDouble(Route::getDistance))
                             .collect(Collectors.toList());
-
                     favoriteRoutes.forEach(Main::printRoute);
                     break;
                 case 6:
